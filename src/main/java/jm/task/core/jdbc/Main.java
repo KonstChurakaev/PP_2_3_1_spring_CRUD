@@ -1,35 +1,34 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
+import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.sql.SQLException;
+
 public class Main {
-    public static void main(String[] args) {
-        SessionFactory factory=new Configuration()
-//                .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(User.class)
-                .buildSessionFactory();
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        try {
-            Session session = factory.getCurrentSession();
-            User user1 = new User("Ivan", "Ivanovich", (byte) 44);
-            session.beginTransaction();
-            session.save(user1);
-            session.getTransaction().commit();
-        } finally {
-            factory.close();
-        }
+        UserService userService = new UserServiceImpl();
 
+        userService.createUsersTable();
 
+        userService.saveUser("Ivan", "Ivanovich", (byte) 44);
+        userService.saveUser("Petr", "Smirnov", (byte) 24);
+        userService.saveUser("Oleg", "Ivanov", (byte) 23);
+        userService.saveUser("Olga", "Petrova", (byte) 19);
 
+        userService.removeUserById(2);
 
-        User user2 = new User("Petr", "Smirnov", (byte) 24);
-        User user3 = new User("Oleg", "Ivanov", (byte) 23);
-        User user4 = new User("Olga", "Petrova", (byte) 19);
+        userService.getAllUsers();
 
+        userService.cleanUsersTable();
 
+        userService.dropUsersTable();
 
     }
 }
