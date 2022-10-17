@@ -11,7 +11,6 @@ public class UserServiceImpl implements UserService {
 
     UserDaoHibernateImpl userDaoHibernate = new UserDaoHibernateImpl();
 
-
     public void createUsersTable() {
         userDaoHibernate.createUsersTable();
     }
@@ -39,8 +38,10 @@ public class UserServiceImpl implements UserService {
     }
 
     public void cleanUsersTable() {
+
         userDaoHibernate.cleanUsersTable();
         List<User> users = userDaoHibernate.getAllUsers();
+
         if (users.isEmpty()){
             System.out.println("Table cleared");
         }else {

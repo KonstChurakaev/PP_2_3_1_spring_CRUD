@@ -18,11 +18,23 @@ import java.util.Properties;
 
 
 public class Util {
+
     private static SessionFactory sessionFactory = null;
     private static Connection connection = null;
+    private static Util instans;
 
-//?????????? ??? Hibernate
-    public static SessionFactory getConnectionHibernate() {
+    private Util() {
+    }
+
+    public static Util getUtil() {
+
+        if (instans == null) {
+            instans = new Util();
+        }
+        return instans;
+    }
+
+    public SessionFactory getConnectionHibernate() {
         try {
             sessionFactory = new Configuration()
                     .addAnnotatedClass(User.class)
@@ -33,8 +45,8 @@ public class Util {
         return sessionFactory;
     }
 
+//    For JDBS
 
-// ?????????? ??? JDBS
     public static Connection getConnectionJDBC() {
         try {
             if (connection == null || connection.isClosed()) {
@@ -50,7 +62,6 @@ public class Util {
         return connection;
     }
 
-
     private static Properties getProps() throws IOException {
         Properties properties = new Properties();
         try (InputStream in = Files.newInputStream(Paths.get(
@@ -62,7 +73,4 @@ public class Util {
             throw new IOException("Database config file not found", e);
         }
     }
-
-
-
 }
