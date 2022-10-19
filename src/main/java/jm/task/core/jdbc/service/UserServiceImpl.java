@@ -1,8 +1,6 @@
 package jm.task.core.jdbc.service;
 
-import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
 
 import java.util.List;
@@ -25,12 +23,11 @@ public class UserServiceImpl implements UserService {
     }
 
     public void removeUserById(long id) {
-
         userDaoHibernate.removeUserById(id);
     }
 
     public List<User> getAllUsers() {
-        List<User> users =  userDaoHibernate.getAllUsers();
+        List<User> users = userDaoHibernate.getAllUsers();
         for (User user : users) {
             System.out.println(user);
         }
@@ -38,14 +35,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public void cleanUsersTable() {
-
         userDaoHibernate.cleanUsersTable();
-        List<User> users = userDaoHibernate.getAllUsers();
-
-        if (users.isEmpty()){
-            System.out.println("Table cleared");
-        }else {
-            System.out.println("Table not cleared");
-        }
     }
 }

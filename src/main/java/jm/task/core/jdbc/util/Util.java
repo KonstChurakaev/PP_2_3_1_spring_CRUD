@@ -27,7 +27,6 @@ public class Util {
     }
 
     public static Util getUtil() {
-
         if (instans == null) {
             instans = new Util();
         }
@@ -46,7 +45,6 @@ public class Util {
     }
 
 //    For JDBS
-
     public static Connection getConnectionJDBC() {
         try {
             if (connection == null || connection.isClosed()) {
