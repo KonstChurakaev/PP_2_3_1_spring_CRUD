@@ -44,7 +44,7 @@ public class Util {
         return sessionFactory;
     }
 
-//    For JDBS
+    //    For JDBS
     public static Connection getConnectionJDBC() {
         try {
             if (connection == null || connection.isClosed()) {
