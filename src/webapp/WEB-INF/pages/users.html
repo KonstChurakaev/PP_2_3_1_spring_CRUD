@@ -1,0 +1,51 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi">
+<html lang="ru">
+
+
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+    <meta charset="UTF-8">
+    <style type="text/css">.add_user {
+       text-align: center;
+    }
+    </style>
+    <title>Таблица юзеров</title>
+</head>
+<body>
+<br>
+<h1 align="center">Список пользователей</h1>
+
+<h1>
+    <table border="1" align="center">
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+            <th>Операции</th>
+        </tr>
+        <br>
+        <tr>
+        <tr th:each="user : ${users}">
+            <td width="200" align="center" th:utext="${user.getName()}"></td>
+            <td width="200" align="center" th:utext="${user.getLastName()}"></td>
+            <td width="200" align="center" th:utext="${user.getAge()}"></td>
+        <td> <a th:href="@{/{id}/edit(id=${user.getId()})}">
+            <button type="button">Редактировать</button></a>
+            <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+                <input type="submit" value = "Удалить"/>
+            </form>
+        </tr>
+
+        </tr>
+    </table>
+    <div class="add_user">
+        <input type="button" value="Добавить нового пользователя" onclick="window.location.href = 'add'"/>
+    </div>
+    <br><br>
+
+</h1>
+</body>
+</html>

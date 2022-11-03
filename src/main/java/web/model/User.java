@@ -1,4 +1,4 @@
-package jm.task.core.jdbc.model;
+package web.model;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -22,7 +22,6 @@ public class User {
     private Byte age;
 
     public User() {
-
     }
 
     public User(String name, String lastName, Byte age) {
