@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1 align="center">Добавление нового пользователя</h1>
-<form align="center" th:method="POST" th:action="@{/input}" th:object="${user}">
+<form align="center" th:method="POST" th:action="@{/saveUser}" th:object="${user}">
 
     <label>Имя
         <input type="text" th:field="*{name}" id="name" required pattern="[А-Яа-яЁё]+$" placeholder="Иван"/>
@@ -18,9 +18,7 @@
     <label>Возраст
         <input type="text" th:field="*{age}" id="age" required pattern="[0-9]+$" placeholder="1-9"/>
     </label>
-    <form method="post" action="/oper/${oper.id}/">
         <input type="submit" value="Добавить">
-    </form>
 
 </form>
 </body>

@@ -23,20 +23,20 @@ public class UserController {
         return "/users";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/addUser")
     public String goPageForAddNewUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "addUser";
     }
 
-    @PostMapping("/input")
+    @PostMapping("/saveUser")
     public String saveNewUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:users";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/{id}/editUser")
     public String goPageEditUser(@PathVariable("id") Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         return "updateUser";
